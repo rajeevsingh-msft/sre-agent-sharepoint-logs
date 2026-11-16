@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title description">
+  <title id="title">POC1: On-demand SharePoint-like log retrieval</title>
+  <desc id="description">After provisioning, seeding synthetic logs, manual testing and granting approved VM-scoped access, a user asks SRE Agent a question. An administrator-approved Azure Run Command invokes a fixed reader through the Azure VM Agent. The reader searches synthetic logs on the private Windows VM disk. Bounded evidence returns through Run Command to SRE Agent. There is no inbound management access or continuous streaming. Command execution is privileged Windows SYSTEM execution.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M 0 0 L 9 5 L 0 10 Z" fill="#475569"/>
+    </marker>
+    <marker id="return-arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M 0 0 L 11 6 L 0 12 Z" fill="#15803d"/>
+    </marker>
+  </defs>
+  <rect width="1280" height="720" rx="20" fill="#ffffff"/>
+  <g font-family="Segoe UI, Arial, sans-serif" fill="#0f172a">
+    <text x="40" y="65" font-size="34" font-weight="700">POC1 | On-demand SharePoint-like log retrieval</text>
+    <text x="40" y="105" font-size="22" fill="#475569">One question. One approved VM. Selected evidence, not whole log files.</text>
+
+    <rect x="40" y="140" width="1180" height="54" rx="12" fill="#f1f5f9" stroke="#cbd5e1"/>
+    <text x="60" y="174" font-size="20">
+      <tspan font-weight="700">Prepare once:</tspan>
+      <tspan> provision VM  &#8594;  seed synthetic logs  &#8594;  manual test  &#8594;  grant approved access</tspan>
+    </text>
+
+    <rect x="740" y="210" width="480" height="220" rx="18" fill="#f0fdfa" stroke="#0f766e" stroke-width="2" stroke-dasharray="7 5"/>
+    <text x="980" y="239" text-anchor="middle" font-size="18" font-weight="600" fill="#115e59">PRIVATE WINDOWS VM</text>
+
+    <rect x="40" y="260" width="200" height="140" rx="16" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+    <text x="140" y="299" text-anchor="middle" font-size="25" font-weight="700" fill="#172554">User</text>
+    <text x="140" y="335" text-anchor="middle" font-size="20" fill="#172554">Ask with a</text>
+    <text x="140" y="363" text-anchor="middle" font-size="20" fill="#172554">correlation ID</text>
+
+    <rect x="280" y="260" width="200" height="140" rx="16" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+    <text x="380" y="299" text-anchor="middle" font-size="25" font-weight="700" fill="#3b0764">SRE Agent</text>
+    <text x="380" y="335" text-anchor="middle" font-size="20" fill="#3b0764">Proposes command</text>
+    <text x="380" y="363" text-anchor="middle" font-size="20" fill="#3b0764">Explains evidence</text>
+
+    <rect x="520" y="260" width="200" height="140" rx="16" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+    <text x="620" y="299" text-anchor="middle" font-size="23" font-weight="700" fill="#78350f">Approved action</text>
+    <text x="620" y="335" text-anchor="middle" font-size="20" fill="#78350f">Azure Run Command</text>
+    <text x="620" y="363" text-anchor="middle" font-size="19" fill="#78350f">VM-scoped permission</text>
+
+    <rect x="760" y="260" width="200" height="140" rx="16" fill="#ccfbf1" stroke="#0f766e" stroke-width="2"/>
+    <text x="860" y="299" text-anchor="middle" font-size="25" font-weight="700" fill="#134e4a">VM reader</text>
+    <text x="860" y="335" text-anchor="middle" font-size="20" fill="#134e4a">VM Agent +</text>
+    <text x="860" y="363" text-anchor="middle" font-size="20" fill="#134e4a">fixed PowerShell</text>
+
+    <rect x="1000" y="260" width="200" height="140" rx="16" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+    <text x="1100" y="299" text-anchor="middle" font-size="25" font-weight="700" fill="#14532d">Local logs</text>
+    <text x="1100" y="335" text-anchor="middle" font-size="20" fill="#14532d">Synthetic ULS-like</text>
+    <text x="1100" y="363" text-anchor="middle" font-size="20" fill="#14532d">C:\SP-SRE-Lab</text>
+
+    <g fill="none" stroke="#475569" stroke-width="3" marker-end="url(#arrow)">
+      <path d="M 242 330 H 273"/>
+      <path d="M 482 330 H 513"/>
+      <path d="M 722 330 H 753"/>
+      <path d="M 962 330 H 993"/>
+    </g>
+
+    <path d="M 1100 402 V 500 H 380 V 405" fill="none" stroke="#15803d" stroke-width="3" marker-end="url(#return-arrow)"/>
+    <rect x="458" y="454" width="565" height="34" rx="8" fill="#ffffff"/>
+    <text x="740" y="479" text-anchor="middle" font-size="22" font-weight="600" fill="#166534">Bounded evidence returns through Run Command</text>
+
+    <rect x="40" y="550" width="1180" height="110" rx="14" fill="#f8fafc" stroke="#cbd5e1"/>
+    <text x="60" y="584" font-size="21" font-weight="600">No inbound RDP / SMB / WinRM. VM Agent uses outbound connectivity through NAT.</text>
+    <text x="60" y="616" font-size="20" fill="#475569">Review + RBAC required. Commands run as SYSTEM; this is not a read-only permission.</text>
+    <text x="60" y="645" font-size="19" fill="#475569">Synthetic feasibility POC only. No SharePoint installation, continuous streaming or proven cloud integration.</text>
+  </g>
+</svg>

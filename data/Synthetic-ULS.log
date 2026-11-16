@@ -1,0 +1,4 @@
+Timestamp	Process	Level	Message	Correlation
+2026-10-21T14:00:00Z	SyntheticSharePoint	High	SYNTHETIC ONLY: test service failure	11111111-1111-1111-1111-111111111111
+2026-10-21T14:00:01Z	SyntheticSharePoint	Unexpected	SYNTHETIC ONLY: test dependency unavailable	11111111-1111-1111-1111-111111111111
+2026-10-21T14:01:00Z	SyntheticSharePoint	Information	SYNTHETIC ONLY: unrelated request	22222222-2222-2222-2222-222222222222

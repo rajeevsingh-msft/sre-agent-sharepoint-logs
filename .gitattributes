@@ -1,0 +1,25 @@
+* text=auto
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.bicep text eol=lf
+*.json text eol=lf
+*.svg text eol=lf
+*.png binary
+
+# Preserve reviewed bytes across clones: readers are hash-pinned; v1 data requires CRLF.
+*.ps1 -text
+data/*.tsv -text
+
+/.local/** export-ignore
+/.azure/** export-ignore
+/AGENTS.md export-ignore
+/docs/Error-and-Solutions.md export-ignore
+.env export-ignore
+.env.* export-ignore
+*.local.* export-ignore
+*.results.json export-ignore
+*.log export-ignore
+data/Synthetic-ULS.log -export-ignore
+*.pem export-ignore
+*.pfx export-ignore

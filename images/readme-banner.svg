@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="210" viewBox="0 0 1200 210" role="img" aria-labelledby="title description">
+  <title id="title">SRE Agent for SharePoint Log Investigation</title>
+  <desc id="description">A nonproduction log investigation lab. Blue represents prerequisites and log storage; purple represents approved agent investigation.</desc>
+  <rect width="1200" height="210" rx="18" fill="#f8fafc"/>
+  <rect width="8" height="210" rx="4" fill="#1d4ed8"/>
+  <path d="M 880 0 H 1200 V 210 H 1000 Z" fill="#ede9fe"/>
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <text x="40" y="46" font-size="15" font-weight="700" fill="#475569" letter-spacing="2">NONPRODUCTION LAB</text>
+    <text x="40" y="96" font-size="38" font-weight="700" fill="#0f172a">SharePoint Log Investigation</text>
+    <text x="40" y="132" font-size="21" fill="#475569">Azure SRE Agent | Private VM | Approval-based execution</text>
+    <rect x="40" y="158" width="255" height="30" rx="15" fill="#dbeafe"/>
+    <text x="56" y="179" font-size="15" font-weight="600" fill="#172554">Prerequisites and log storage</text>
+    <rect x="307" y="158" width="255" height="30" rx="15" fill="#ede9fe"/>
+    <text x="323" y="179" font-size="15" font-weight="600" fill="#3b0764">Agent and evidence validation</text>
+  </g>
+  <g fill="none" stroke-width="2">
+    <rect x="930" y="65" width="65" height="65" rx="14" fill="#dbeafe" stroke="#1d4ed8"/>
+    <path d="M 947 86 H 978 M 947 97 H 978 M 947 108 H 970" stroke="#1d4ed8"/>
+    <path d="M 996 97 H 1054 M 1046 89 L 1054 97 L 1046 105" stroke="#7c3aed"/>
+    <rect x="1056" y="65" width="65" height="65" rx="14" fill="#ede9fe" stroke="#7c3aed"/>
+    <path d="M 1073 98 L 1084 109 L 1105 86" stroke="#7c3aed" stroke-width="3"/>
+  </g>
+</svg>

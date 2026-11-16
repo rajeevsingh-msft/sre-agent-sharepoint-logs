@@ -1,0 +1,45 @@
+name: Validate lab package
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate source, documentation and packaging
+        run: pwsh -NoProfile -File .\tests\Test-Package.ps1
+      - name: Test context and deployment workflow
+        run: pwsh -NoProfile -File .\tests\Test-Workflow.ps1
+      - name: Test command transport
+        run: pwsh -NoProfile -File .\tests\Test-CommandTransport.ps1
+      - name: Test automated setup
+        run: pwsh -NoProfile -File .\tests\Test-Azd.ps1
+      - name: Test optional Bastion RDP access guards
+        run: pwsh -NoProfile -File .\tests\Test-BastionRdp.ps1
+      - name: Test smoke reader and Windows PowerShell compatibility
+        run: pwsh -NoProfile -File .\tests\Test-Local.ps1
+      - name: Test incident demo and Windows PowerShell compatibility
+        run: pwsh -NoProfile -File .\tests\Test-IncidentDemo.ps1
+      - name: Compile infrastructure without Azure sign-in
+        run: |
+          $ErrorActionPreference = 'Stop'
+          az bicep version
+          if ($LASTEXITCODE -ne 0) {
+              az bicep install
+              if ($LASTEXITCODE -ne 0) { throw 'Bicep installation failed.' }
+          }
+          foreach ($template in @('infra\main.bicep', 'infra\agent-access.bicep', 'infra\azd\main.bicep')) {
+              az bicep build --file $template --stdout | Out-Null
+              if ($LASTEXITCODE -ne 0) { throw "Bicep compilation failed: $template" }
+          }

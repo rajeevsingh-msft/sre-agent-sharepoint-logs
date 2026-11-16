@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title description">
+  <title id="title">POC1: Compact technical implementation flow</title>
+  <desc id="description">Uses the same steps 1-7 as the README and detailed guide. Read setup left to right: steps 1-3 select the account/target, check prerequisites and preview/deploy the VM; step 4.1 installs smoke-test files; step 4.2 proves manual retrieval; step 5 configures approved agent access. Read investigation substeps 6.1-6.4 right to left: ask and approve, invoke the VM command, read bounded logs, then return and explain evidence. Step 7 verifies actual acceptance and retains evidence; cleanup is separately approved. The scripts and limits shown are for the original three-event smoke test, not the optional 638-event incident demo. VM Agent transport uses outbound NAT connectivity. SYSTEM command authority is privileged, not read-only; agent execution remains a live acceptance gate.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M 0 0 L 11 6 L 0 12 Z" fill="#475569"/>
+    </marker>
+  </defs>
+  <rect width="1280" height="720" rx="20" fill="#ffffff"/>
+  <g font-family="Segoe UI, Arial, sans-serif" fill="#0f172a">
+    <text x="40" y="62" font-size="34" font-weight="700">POC1 | Compact technical implementation flow</text>
+    <text x="40" y="100" font-size="22" fill="#475569">Follow guide steps 1-7; 4.x and 6.x show internal actions, not a second checklist.</text>
+    <text x="40" y="125" font-size="16" fill="#475569">Blue: prerequisites and log storage (1-4). Purple: SRE Agent and verification (5-7). Smoke-test limits shown.</text>
+    <text x="40" y="148" font-size="18" font-weight="700" fill="#475569">SETUP - LEFT TO RIGHT</text>
+
+    <g fill="#172554">
+      <rect x="40" y="160" width="270" height="180" rx="15" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+      <text x="58" y="195" font-size="22" font-weight="700">1-3. Prepare lab</text>
+      <text x="58" y="230" font-size="18">1. Initialize-LabContext.ps1</text>
+      <text x="58" y="257" font-size="18">2. Test-Preflight.ps1</text>
+      <text x="58" y="284" font-size="18">3. Deploy-Lab.ps1</text>
+      <text x="58" y="311" font-size="18">Review what-if; then deploy</text>
+    </g>
+
+    <g fill="#172554">
+      <rect x="350" y="160" width="270" height="180" rx="15" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+      <text x="368" y="195" font-size="20" font-weight="700">4.1. Initialize VM files</text>
+      <text x="368" y="230" font-size="18">Initialize-Lab.ps1</text>
+      <text x="368" y="257" font-size="18">C:\SP-SRE-Lab</text>
+      <text x="368" y="284" font-size="18">Synthetic-ULS.log</text>
+      <text x="368" y="311" font-size="18">+ Read-UlsLab.ps1</text>
+    </g>
+
+    <g fill="#172554">
+      <rect x="660" y="160" width="270" height="180" rx="15" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+      <text x="678" y="195" font-size="20" font-weight="700">4.2. Prove manual access</text>
+      <text x="678" y="230" font-size="18">Test-Lab.ps1</text>
+      <text x="678" y="257" font-size="18">Known GUID: 2 matches</text>
+      <text x="678" y="284" font-size="18">Absent GUID: 0 matches</text>
+      <text x="678" y="311" font-size="18">No stderr; partial = false</text>
+    </g>
+
+    <g fill="#3b0764">
+      <rect x="970" y="160" width="270" height="180" rx="15" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+      <text x="988" y="195" font-size="20" font-weight="700">5. Configure agent access</text>
+      <text x="988" y="230" font-size="18">Grant-AgentAccess.ps1</text>
+      <text x="988" y="257" font-size="18">Agent principal object ID</text>
+      <text x="988" y="284" font-size="18">Custom role on this VM</text>
+      <text x="988" y="311" font-size="18">Privileged SYSTEM authority</text>
+    </g>
+
+    <text x="40" y="388" font-size="18" font-weight="700" fill="#475569">STEP 6: ON DEMAND - RIGHT TO LEFT</text>
+
+    <g fill="#3b0764">
+      <rect x="970" y="410" width="270" height="190" rx="15" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+      <text x="988" y="445" font-size="20" font-weight="700">6.1. Ask + approve</text>
+      <text x="988" y="480" font-size="18">New-AgentPrompt.ps1</text>
+      <text x="988" y="507" font-size="18">VM ID + GUID + reader hash</text>
+      <text x="988" y="534" font-size="18">Agent proposes exact payload</text>
+      <text x="988" y="561" font-size="18">Administrator approves</text>
+    </g>
+
+    <g fill="#3b0764">
+      <rect x="660" y="410" width="270" height="190" rx="15" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+      <text x="678" y="445" font-size="20" font-weight="700">6.2. Invoke VM command</text>
+      <text x="678" y="480" font-size="18">az vm run-command invoke</text>
+      <text x="678" y="507" font-size="18">RunPowerShellScript</text>
+      <text x="678" y="534" font-size="18">Azure VM Agent transport</text>
+      <text x="678" y="561" font-size="18">Hash check; run as SYSTEM</text>
+    </g>
+
+    <g fill="#3b0764">
+      <rect x="350" y="410" width="270" height="190" rx="15" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+      <text x="368" y="445" font-size="20" font-weight="700">6.3. Read bounded logs</text>
+      <text x="368" y="480" font-size="18">Read-UlsLab.ps1</text>
+      <text x="368" y="507" font-size="18">Fixed file + GUID filter</text>
+      <text x="368" y="534" font-size="18">1 MiB / 10k lines / 3 hits</text>
+      <text x="368" y="561" font-size="18">180 chars per fragment</text>
+    </g>
+
+    <g fill="#3b0764">
+      <rect x="40" y="410" width="270" height="190" rx="15" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+      <text x="58" y="445" font-size="20" font-weight="700">6.4. Return + explain</text>
+      <text x="58" y="480" font-size="18">JSON: max 2,500 UTF-8 bytes</text>
+      <text x="58" y="507" font-size="18">Source / UTC / match count</text>
+      <text x="58" y="534" font-size="18">partial + coverage + evidence</text>
+      <text x="58" y="561" font-size="18">Agent checks actual tool result</text>
+    </g>
+
+    <g fill="none" stroke="#475569" stroke-width="3" marker-end="url(#arrow)">
+      <path d="M 312 250 H 343"/>
+      <path d="M 622 250 H 653"/>
+      <path d="M 932 250 H 963"/>
+      <path d="M 1105 342 V 403"/>
+      <path d="M 968 505 H 937"/>
+      <path d="M 658 505 H 627"/>
+      <path d="M 348 505 H 317"/>
+      <path d="M 175 602 V 613"/>
+    </g>
+
+    <rect x="40" y="615" width="1200" height="38" rx="10" fill="#ede9fe" stroke="#7c3aed"/>
+    <text x="58" y="641" font-size="20" font-weight="700" fill="#3b0764">7. Verify completion and clean up</text>
+    <text x="420" y="641" font-size="17" fill="#3b0764">Retain evidence first; cleanup is a separate approved action.</text>
+    <rect x="40" y="663" width="1200" height="47" rx="10" fill="#f8fafc" stroke="#cbd5e1"/>
+    <text x="58" y="682" font-size="16" font-weight="600">VM permission: Microsoft.Compute/virtualMachines/runCommand/action - not read-only access.</text>
+    <text x="58" y="702" font-size="16" fill="#475569">Check stdout + stderr; stop on errors/timeouts. NAT egress; no inbound ports needed for Run Command. Synthetic POC.</text>
+  </g>
+</svg>

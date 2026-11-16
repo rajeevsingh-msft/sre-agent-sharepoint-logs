@@ -1,0 +1,19 @@
+# Keep compiled templates, local configuration, results and secrets out of the shareable source.
+infra/*.json
+infra/azd/main.json
+*.local.*
+*.results.json
+*.log
+!/data/Synthetic-ULS.log
+*.pem
+*.pfx
+.env
+.env.*
+
+# Private operator notes and local assistant instructions; never distribute.
+/.local/
+/AGENTS.md
+/docs/Error-and-Solutions.md
+
+# azd environment state, generated deployment files and local secret references.
+/.azure/

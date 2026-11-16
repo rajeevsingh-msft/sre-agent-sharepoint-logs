@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://aka.ms/azure-dev/v1.0/azure.yaml.json
+name: sp-sre-poc1
+requiredVersions:
+  azd: ">= 1.11.1"
+infra:
+  provider: bicep
+  path: infra/azd
+workflows:
+  up:
+    - azd: provision
+hooks:
+  preprovision:
+    shell: pwsh
+    run: scripts/azd/preprovision.ps1
+    interactive: true
+    continueOnError: false
+  postprovision:
+    shell: pwsh
+    run: scripts/azd/postprovision.ps1
+    interactive: true
+    continueOnError: false
+  predown:
+    shell: pwsh
+    run: throw 'Automatic group deletion is disabled. Follow docs/Implementation-Guide.md cleanup after inspecting the dedicated resource group and revoking agent access.'
+    continueOnError: false
