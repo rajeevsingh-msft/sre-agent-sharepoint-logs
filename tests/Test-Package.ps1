@@ -13,7 +13,7 @@ function Assert-True {
 function Get-MarkdownInfo {
     param([string]$Path)
     $text = [IO.File]::ReadAllText($Path)
-    $prose = [regex]::Replace($text, '(?ms)^```[^\r\n]*\r?\n.*?^```[^\r\n]*$', '')
+    $prose = [regex]::Replace($text, '(?ms)^```[^\r\n]*\r?\n.*?^```[^\r\n]*\r?$', '')
     $anchors = [Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
     $headings = @()
     $counts = @{}
