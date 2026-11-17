@@ -27,6 +27,8 @@ jobs:
         run: pwsh -NoProfile -File .\tests\Test-Azd.ps1
       - name: Test optional Bastion RDP access guards
         run: pwsh -NoProfile -File .\tests\Test-BastionRdp.ps1
+      - name: Test setup file text transfer and Windows PowerShell compatibility
+        run: pwsh -NoProfile -File .\tests\Test-LabSetupTransfer.ps1
       - name: Test smoke reader and Windows PowerShell compatibility
         run: pwsh -NoProfile -File .\tests\Test-Local.ps1
       - name: Test incident demo and Windows PowerShell compatibility
